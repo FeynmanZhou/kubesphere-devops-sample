@@ -67,7 +67,7 @@ spec:
     stage('build image') {
         steps{
         container('docker'){
-          sh 'docker build . -t runzexia/kubesphere-devops-sample:latest'
+          sh 'docker build . -t pengfeizhou/kubesphere-devops-sample:latest'
         }
       }
     }
@@ -76,12 +76,12 @@ spec:
         steps{
             container('docker'){
                 withCredentials([[$class: 'UsernamePasswordMultiBinding',
-                         credentialsId: 'key-github-hello0610',
+                         credentialsId: 'key-docker0610',
                          usernameVariable: 'DOCKER_HUB_USER',
                          passwordVariable: 'DOCKER_HUB_PASSWORD']]) {
                          sh """
                            docker login -u ${DOCKER_HUB_USER} -p ${DOCKER_HUB_PASSWORD}
-                           docker push runzexia/kubesphere-devops-sample:latest
+                           docker push pengfeizhou/kubesphere-devops-sample:latest
                            """
                 }
             }
